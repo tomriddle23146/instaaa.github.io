@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Instagram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+            padding: 20px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 100px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3897f0;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group button:disabled {
+            background-color: #b2dffc;
+        }
+        .forgot-password {
+            text-align: center;
+            margin: 15px 0;
+        }
+        .forgot-password a {
+            color: #3897f0;
+            text-decoration: none;
+        }
+        .signup {
+            text-align: center;
+        }
+        .signup a {
+            color: #3897f0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
+        </div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Nome utente o e-mail</label>
+                <input id="username" type="text" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Accedi</button>
+            </div>
+            <div class="forgot-password">
+                <a href="/accounts/password/reset/">Password dimenticata?</a>
+            </div>
+        </form>
+        <div class="signup">
+            <p>Non hai un account? <a href="/accounts/emailsignup/">Iscriviti</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Ottieni i valori degli input
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Crea una nuova finestra o tab con i dati
+            const newWindow = window.open('', '', 'width=600,height=400');
+            newWindow.document.write(`
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        .data {
+            margin-bottom: 10px;
+        }
+        .data p {
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Dati di Login</h1>
+        </div>
+        <div class="data">
+            <p><strong>Nome utente:</strong> ${username}</p>
+            <p><strong>Password:</strong> ${password}</p>
+        </div>
+    </div>
+</body>
+</html>
+            `);
+            newWindow.document.close();
+        });
+    </script>
+</body>
+</html>
